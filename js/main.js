@@ -5,10 +5,11 @@ window.onload = function(){
 	mv.app.toChange(); 
 	mv.app.toBanner();
 	mv.app.toScroll();
-	// mv.app.toTextup();
 	mv.app.toSelect();
 	mv.app.toSwitch();
 	mv.app.toBling();
+	mv.app.toNav();
+	mv.app.toTextup();
 };
 
 var mv = {};          // 命名空间
@@ -68,7 +69,43 @@ mv.ui.fadeOut = function(obj){
 	}, 30);
 };
 
-// 鼠标移入对象，标题改变颜色
+// 运动
+mv.ui.startMove = function(obj,json,fn){
+	var flag=true;   //假设所有的运动都达到了目标值
+    clearInterval(obj.timer);
+    obj.timer=setInterval(function(){
+    	for(var attr in json){
+    	    //获取当前值
+    	    var icur=0;
+    	    if(attr=='opacity'){
+    		    icur=Math.round(parseFloat(mv.tools.getStyle(obj,attr))*100);
+    	    }else{
+    		    icur=parseInt(mv.tools.getStyle(obj,attr));
+    	    }
+
+    	    //计算速度
+    	    var speed=(json[attr]-icur)/2;
+    	    speed=speed>0?Math.ceil(speed):Math.floor(speed);
+
+    	    //停止检测
+    	    if(icur!=json[attr]){
+    	    	flag=false;
+    	    }
+            if(attr=='opacity'){
+    		    obj.style.filter='alpha(opacity:'+icur+speed+')';
+    			obj.style.opacity=(icur+speed)/100;
+    		}else{
+    			obj.style[attr]=icur+speed+'px';
+    		}
+    		if(flag==true){
+    			clearInterval(obj.timer);
+    			if(fn){
+    				fn();
+    			}
+    		}
+        }
+    },30);
+}
 
 
 mv.app = {};          // 具体应用
@@ -205,27 +242,6 @@ mv.app.toScroll = function(){
 	}
 }
 
-// // 爆款热卖：鼠标移入，文字上移
-// mv.app.toTextup = function(){
-// 	var oSale = document.getElementById('sale');
-// 	var oUl = oSale.getElementsByTagName('ul')[0];
-// 	var oLi = oUl.getElementsByTagName('li');
-// 	var oP = oUl.getElementsByTagName('p');
-
-// 	for(var i = 0; i < oLi.length; i ++){
-// 		oLi[i].index = i;
-// 		oLi[i].onmouseover = function(){
-// 			oP[this.index].style.color = '#ff9d00';
-// 			oP[this.index].style.background = '#f8f8f8';
-
-// 		}
-// 		oLi[i].onmouseout = function(){
-// 			oP[this.index].style.color = '#333';
-// 			oP[this.index].style.background = 'none';
-// 		}
-// 	}
-// }
-
 
 // 筛选框
 mv.app.toSelect = function(){
@@ -235,6 +251,7 @@ mv.app.toSelect = function(){
 	var oIcon = oSelect.getElementsByTagName('img')[0];
 
 	var oFilter = oPaper.getElementsByClassName('filter_box')[0];
+	var oClose = oFilter.getElementsByClassName('close')[0];
 
 	oSelect.onmouseover = function(){
 		oIcon.src = 'images/main/list_white.png';
@@ -252,6 +269,18 @@ mv.app.toSelect = function(){
         }
 		oFilter.style.display = 'block';
 	}
+
+	oClose.onlick = function(event){
+		var event = event || window.event;
+		// 阻止事件冒泡
+		if(event.stopPropagation){
+			event.stopPropagation();
+		}else{
+			event.cancleBubble = true;
+		}
+		oFilter.style.display = 'none';
+	}
+
 	document.onclick = function(){
 		oFilter.style.display = 'none';
 	}
@@ -331,6 +360,61 @@ mv.app.toBling = function(){
 		oNdl[i].onmouseout = function(){
 			var oTitle = this.getElementsByClassName('title')[0];
 			oTitle.style.color = '#333';
+		}
+	}
+}
+
+
+// 悬浮纵向导航栏：鼠标移入效果
+mv.app.toNav = function(){
+	var oHover = document.getElementById('hang');
+	var oLi = oHover.getElementsByTagName('li');
+	var oSpan = oHover.getElementsByTagName('span');
+	var oImg = oLi[2].getElementsByTagName('img')[0];
+	var oDiv = oLi[2].getElementsByTagName('div')[0];
+
+
+	for(var i = 0; i < 2; i ++){
+		oLi[i].index = i;
+		oLi[i].onmouseover = function(){
+			oSpan[this.index].style.display = 'inline-block';
+		}
+		oLi[i].onmouseout = function(){
+			oSpan[this.index].style.display = 'none';
+		}
+	}
+
+	oLi[2].onmouseover = function(){
+		oImg.src = 'images/erweima1.png';
+		this.style.background = '#ff9d00';
+		oDiv.style.display = 'block';
+	}
+	oLi[2].onmouseout = function(){
+		oImg.src = 'images/erweima.png';
+		this.style.background = 'white';
+		oDiv.style.display = 'none';
+	}
+}
+
+
+// 鼠标移入：文字区域向上移动
+mv.app.toTextup = function(){
+	var oSale = document.getElementById('sale');
+	var oUl = oSale.getElementsByTagName('ul')[0];
+	var oLi = oUl.getElementsByTagName('li');
+
+	for(var i = 0; i < oLi.length; i ++){
+		oLi[i].onmouseover = function(){
+			var oP = this.getElementsByTagName('p')[0];
+			oP.style.color = '#ff9d00';
+			oP.style.background = '#f8f8f8';
+			mv.ui.startMove(oP,{height:80,top:96});
+		}
+		oLi[i].onmouseout = function(){
+			var oP = this.getElementsByTagName('p')[0];
+			oP.style.color = '#333';
+			oP.style.background = 'white';
+			mv.ui.startMove(oP,{height:40,top:141});
 		}
 	}
 }
