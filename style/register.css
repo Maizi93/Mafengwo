@@ -1,0 +1,306 @@
+/*对样式进行重置*/
+body,ul,p,h1,h2,h3,h4,dl,dd,form,input,textarea,select{
+	margin: 0;
+	padding: 0;
+	font-family: 微软雅黑;
+}
+li{
+	list-style: none;
+}
+img{
+	border:none;
+}
+a{
+	text-decoration: none;
+}
+
+/*背景图片*/
+#bg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: -1;
+}
+#bg img{
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+
+/*注册界面*/
+#wrap_2{
+	width: 372px;
+	height: 480px;
+	margin: 0 auto;
+}
+#wrap_2 .m{
+	margin: 20px 140px;
+}
+#rg_box{
+	position: relative;
+	width: 372px;
+	height: 320px;
+	background: #fff;
+	border-radius: 6px;
+}
+#rg_box form{
+	width: 320px;
+	padding: 10px 26px 10px 26px;
+}
+#rg_box form .phone{
+	visibility: hidden;
+	width: 320px;
+	color: #ff3c00;
+	font-size: 12px;
+	margin-bottom: 4px;
+}
+#rg_box form .phone img{
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: 5px;
+}
+form input{
+	display: inline-block;
+	width: 320px;
+	height: 42px;
+	border-radius: 5px;
+	border: 1px solid #d8d8d8;
+	margin-bottom: 10px;
+	text-indent: 12px;
+	color: #a9a9a9;
+}
+form input:focus{
+	border: 1px solid #ff9d00;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #ff9d00;
+	outline: none;
+}
+#rg_box form .rg_btn{
+	display: inline-block;
+	width: 320px;
+	height: 42px;
+	margin-bottom: 10px;
+	line-height: 42px;
+	border-radius: 5px;
+    border: 1px solid #ff9d00;
+	background: #ff9d00;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	opacity: 1;
+}
+#rg_box form .rg_btn:hover{
+	opacity: 0.9;
+}
+#rg_box form .tips{
+	font-size: 12px;
+	color: #ccc;
+	float: right;
+}
+#rg_box form .tips a{
+	color: #999;
+}
+#rg_box form .tips a:hover{
+	color: #000;
+	text-decoration: underline;
+}
+
+
+
+#co-site{
+	position: absolute;
+	bottom: 0;
+	width: 320px;
+	height: 123px;
+	border-top: 1px solid #ebebeb; 
+	padding: 15px 26px 0 26px;
+}
+#co-site h2{
+	color: #999;
+	font-weight: normal;
+	font-size: 12px;
+}
+#co-site ul{
+	width: 230px;
+	height: 66px;
+	margin-top: 20px;
+}
+#co-site ul li{
+	float: left;
+	width: 56px;
+	height: 66px;
+	margin-right: 31px;
+	opacity: 0.8;
+}
+#co-site ul li.last{
+	margin-right: 0;
+}
+#co-site ul li:hover{
+	opacity: 0.9;
+}
+#co-site ul li a{
+	color: #999;
+	font-size: 12px;
+}
+#co-site ul li a img{
+	position: relative;
+	left: 6px;
+	width: 44px;
+	height: 44px;
+}
+#co-site ul li a span{
+	display: inline-block;
+	width: 56px;
+	text-align: center;
+}
+
+
+#lg{
+	width: 142px;
+	height: 26px;
+	font-size: 12px;
+	border-radius: 26px;
+	background: #000;
+	opacity: 0.7;
+	margin: 10px auto;
+    text-align: center;
+}
+#lg span{
+	color: #fff;
+	line-height: 26px;
+}
+#lg a{
+	color: #ff9d00;
+}
+#lg a:hover{
+	text-decoration: underline;
+}
+
+
+
+
+
+/*切换到登录界面*/
+#wrap_1{
+	position: absolute;
+	top: 0;
+	left: 498px;
+	width: 372px;
+	height: 528px;
+	margin: 0 auto;
+}
+#wrap_1 .m{
+	margin: 20px 140px;
+}
+#lg_box{
+	position: relative;
+	width: 372px;
+	height: 378px;
+	background: #fff;
+	border-radius: 6px;
+}
+#lg_box form{
+	width: 320px;
+	padding: 4px 26px 10px 26px;
+}
+#lg_box form p{
+	visibility: hidden;
+	width: 320px;
+	color: #ff3c00;
+	font-size: 12px;
+	margin-bottom: 4px;
+}
+#lg_box form p img{
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top: 5px;
+}
+#lg_box form .password{
+	position: absolute;
+	top: 4px;
+}
+#lg_box form a.forget{
+	float: right;
+	display: inline-block;
+	color: #ff9d00;
+	font-size: 12px;
+	text-align: right;
+}
+#lg_box form a.forget:hover{
+	text-decoration: underline;
+}
+#lg_box form .lg_btn{
+	display: inline-block;
+	width: 320px;
+	height: 42px;
+	line-height: 42px;
+	border-radius: 5px;
+    border: 1px solid #ff9d00;
+	margin-top: 10px;
+	background: #ff9d00;
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 10px;
+	opacity: 1;
+}
+#lg_box form .lg_btn:hover{
+	opacity: 0.9;
+}
+
+
+#rg{
+	width: 142px;
+	height: 26px;
+	font-size: 12px;
+	border-radius: 26px;
+	background: #000;
+	opacity: 0.7;
+	margin: 10px auto;
+	text-align: center;
+}
+#rg span{
+	color: #fff;
+	line-height: 26px;
+}
+#rg a{
+	color: #ff9d00;
+}
+#rg a:hover{
+	text-decoration: underline;
+}
+
+
+
+
+
+
+#corner{
+	position: absolute;
+	top: 
+	display: inline-block;
+	bottom: 10px;
+	right: 10px;
+	font-size: 12px;
+	color: #fff;
+}
+#corner a{
+	color: #fff;
+}
+#corner a:hover{
+	text-decoration: underline;
+}
+#corner .paper{
+	display: inline-block;
+	width: 166px;
+/*	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;*/
+}
